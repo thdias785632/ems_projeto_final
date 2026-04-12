@@ -1,0 +1,182 @@
+{% extends "base.html" %}
+{% block title %}Dashboard de Resultados — EMS UFABC{% endblock %}
+{% block content %}
+<style>
+  .dash-header{background:linear-gradient(135deg,#0f4c35,#1a7a52);border-radius:14px;padding:1.75rem 1.5rem;color:#fff;margin-bottom:1.25rem}
+  .dash-header h1{font-family:'Sora',sans-serif;font-size:21px;font-weight:700;margin-bottom:.35rem}
+  .dash-header p{font-size:13px;opacity:.8;line-height:1.5;margin-bottom:1rem}
+  .dash-meta{display:flex;gap:.75rem;flex-wrap:wrap}
+  .dash-meta span{background:rgba(255,255,255,.15);border-radius:20px;font-size:11.5px;padding:4px 12px}
+  .kpi-row{display:grid;grid-template-columns:repeat(4,1fr);gap:.75rem;margin-bottom:1rem}
+  .kpi{background:#fff;border:0.5px solid #ddd;border-radius:12px;padding:1rem}
+  .kpi .num{font-family:'Sora',sans-serif;font-size:22px;font-weight:700;color:#0f4c35}
+  .kpi .lbl{font-size:12px;color:#666;margin-top:.25rem;line-height:1.4}
+  .kpi .delta{font-size:11.5px;color:#1a7a52;margin-top:.3rem;font-weight:500}
+  .row-2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+  .row-3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:.75rem;margin-bottom:.75rem}
+  .card{background:#fff;border:0.5px solid #ddd;border-radius:12px;padding:1.1rem}
+  .card h3{font-family:'Sora',sans-serif;font-size:13.5px;font-weight:600;color:#1a1a2e;margin-bottom:.85rem}
+  .bar-h{margin-bottom:.5rem}
+  .bar-h .lbl{font-size:12px;color:#555;margin-bottom:.25rem;display:flex;justify-content:space-between}
+  .bar-h .track{background:#f0f0f0;border-radius:20px;height:10px;overflow:hidden}
+  .bar-h .fill{height:100%;border-radius:20px;transition:width 1s ease}
+  .verde{background:#1a7a52}.azul{background:#1a3a6c}.laranja{background:#c05c0a}
+  .cinza{background:#888}.verm{background:#c0392b}.amarelo{background:#d4a017}
+  .comparativo{display:grid;grid-template-columns:1fr 1fr}
+  .cmp-col{padding:.5rem}
+  .cmp-col h4{font-size:12px;font-family:'Sora',sans-serif;font-weight:600;margin-bottom:.5rem;padding-bottom:.35rem;border-bottom:2.5px solid}
+  .cmp-col.pre h4{color:#0f4c35;border-color:#1a7a52}
+  .cmp-col.pos h4{color:#1a3a6c;border-color:#2563b0}
+  .cmp-item{font-size:12px;color:#666;padding:.3rem 0;border-bottom:0.5px solid #eee;display:flex;justify-content:space-between}
+  .cmp-item span{font-weight:600;color:#1a1a2e}
+  .nota-row{display:flex;align-items:center;justify-content:center;gap:1.25rem;padding:.75rem}
+  .nota-num{font-family:'Sora',sans-serif;font-size:42px;font-weight:700;color:#0f4c35}
+  .nota-stars{font-size:22px;letter-spacing:2px;color:#e5a800}
+  .nota-txt{font-size:12px;color:#666;line-height:1.5}
+  .divider{height:0.5px;background:#eee;margin:.75rem 0}
+  .destaque-txt{font-size:12px;color:#333;margin-top:.5rem;line-height:1.6;padding:.6rem .75rem;background:#f0f8f4;border-radius:8px;border-left:3px solid #1a7a52}
+  .rodape{text-align:center;font-size:12px;color:#888;margin-top:1.5rem;padding-top:1rem;border-top:0.5px solid #ddd}
+  @media(max-width:600px){.kpi-row,.row-2,.row-3{grid-template-columns:1fr}}
+</style>
+
+<div class="dash-header">
+  <h1>Dashboard — Eficiência Energética em Condomínio</h1>
+  <p>Resultados simulados com base em pesquisas nacionais sobre hábitos energéticos (EPE, 2023; PROCEL, 2024). Os dados refletem padrões reais documentados em estudos com públicos similares em condomínios residenciais.</p>
+  <div class="dash-meta">
+    <span>n = 32 participantes simulados</span>
+    <span>Moradores de condomínio</span>
+    <span>Santo André – SP</span>
+    <span>Grupo 1 — UFABC 2026</span>
+  </div>
+</div>
+
+<div class="kpi-row">
+  <div class="kpi"><div class="num">32</div><div class="lbl">participantes no total</div></div>
+  <div class="kpi"><div class="num">3,1 → 4,4</div><div class="lbl">preocupação com energia (escala 1–5)</div><div class="delta">+42% após o material</div></div>
+  <div class="kpi"><div class="num">28% → 91%</div><div class="lbl">acertaram o conceito de efic. energética</div><div class="delta">+63 p.p. de ganho</div></div>
+  <div class="kpi"><div class="num">4,6 / 5</div><div class="lbl">avaliação média do material</div><div class="delta">94% repassariam as informações</div></div>
+</div>
+
+<div class="row-2">
+  <div class="card">
+    <h3>Perfil etário dos participantes</h3>
+    <div class="bar-h"><div class="lbl"><span>18–30 anos</span><span>22%</span></div><div class="track"><div class="fill verde" style="width:22%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>31–45 anos</span><span>38%</span></div><div class="track"><div class="fill verde" style="width:38%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>46–60 anos</span><span>28%</span></div><div class="track"><div class="fill verde" style="width:28%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Mais de 60 anos</span><span>12%</span></div><div class="track"><div class="fill verde" style="width:12%"></div></div></div>
+  </div>
+  <div class="card">
+    <h3>Valor médio da conta de luz (pré)</h3>
+    <div class="bar-h"><div class="lbl"><span>Menos de R$80</span><span>9%</span></div><div class="track"><div class="fill azul" style="width:9%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>R$80 a R$150</span><span>34%</span></div><div class="track"><div class="fill azul" style="width:34%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>R$150 a R$250</span><span>41%</span></div><div class="track"><div class="fill azul" style="width:41%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Mais de R$250</span><span>16%</span></div><div class="track"><div class="fill azul" style="width:16%"></div></div></div>
+  </div>
+</div>
+
+<div class="row-2">
+  <div class="card">
+    <h3>Conhecimento do conceito — pré vs pós</h3>
+    <p style="font-size:12px;color:#666;margin-bottom:.75rem">"Fazer o mesmo com menos energia" — resposta correta</p>
+    <div class="bar-h"><div class="lbl"><span>Acertou — PRÉ</span><span>28%</span></div><div class="track"><div class="fill cinza" style="width:28%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Acertou — PÓS</span><span>91%</span></div><div class="track"><div class="fill verde" style="width:91%"></div></div></div>
+    <div class="divider"></div>
+    <p style="font-size:12px;color:#555">Aumento de <strong style="color:#0f4c35">+63 pontos percentuais</strong> após o material</p>
+  </div>
+  <div class="card">
+    <h3>Qual aparelho consome mais? — pré vs pós</h3>
+    <div class="comparativo">
+      <div class="cmp-col pre">
+        <h4>Antes</h4>
+        <div class="cmp-item">Geladeira <span>35%</span></div>
+        <div class="cmp-item">TV <span>28%</span></div>
+        <div class="cmp-item">Chuveiro <span>24%</span></div>
+        <div class="cmp-item">Iluminação <span>13%</span></div>
+      </div>
+      <div class="cmp-col pos">
+        <h4>Depois</h4>
+        <div class="cmp-item">Chuveiro <span>84%</span></div>
+        <div class="cmp-item">Geladeira <span>9%</span></div>
+        <div class="cmp-item">TV <span>5%</span></div>
+        <div class="cmp-item">Iluminação <span>2%</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row-2">
+  <div class="card">
+    <h3>Havia tentado economizar energia antes?</h3>
+    <div class="bar-h"><div class="lbl"><span>Sim, e funcionou</span><span>19%</span></div><div class="track"><div class="fill verde" style="width:19%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Sim, mas sem diferença</span><span>22%</span></div><div class="track"><div class="fill amarelo" style="width:22%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Não, mas quer tentar</span><span>44%</span></div><div class="track"><div class="fill laranja" style="width:44%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Não vê como mudar</span><span>15%</span></div><div class="track"><div class="fill cinza" style="width:15%"></div></div></div>
+  </div>
+  <div class="card">
+    <h3>Conhecia a Tarifa Social antes?</h3>
+    <div class="bar-h"><div class="lbl"><span>Sim, com detalhes</span><span>6%</span></div><div class="track"><div class="fill verde" style="width:6%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Já ouvi, mas não sei</span><span>31%</span></div><div class="track"><div class="fill amarelo" style="width:31%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Nunca ouvi falar</span><span>63%</span></div><div class="track"><div class="fill verm" style="width:63%"></div></div></div>
+    <div class="divider"></div>
+    <p style="font-size:12px;color:#555">Após o material, <strong style="color:#0f4c35">78%</strong> disseram que vão verificar se têm direito</p>
+  </div>
+</div>
+
+<div class="row-3">
+  <div class="card">
+    <h3>Dicas que pretendem adotar (pós)</h3>
+    <div class="bar-h"><div class="lbl"><span>Banho mais curto</span><span>87%</span></div><div class="track"><div class="fill verde" style="width:87%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Trocar por LED</span><span>81%</span></div><div class="track"><div class="fill verde" style="width:81%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Desligar da tomada</span><span>75%</span></div><div class="track"><div class="fill verde" style="width:75%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Tarifa Social</span><span>69%</span></div><div class="track"><div class="fill azul" style="width:69%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Luz natural</span><span>63%</span></div><div class="track"><div class="fill azul" style="width:63%"></div></div></div>
+  </div>
+  <div class="card">
+    <h3>O material foi fácil de entender?</h3>
+    <div class="bar-h"><div class="lbl"><span>Sim, muito fácil</span><span>66%</span></div><div class="track"><div class="fill verde" style="width:66%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Razoável</span><span>28%</span></div><div class="track"><div class="fill amarelo" style="width:28%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Difícil</span><span>6%</span></div><div class="track"><div class="fill verm" style="width:6%"></div></div></div>
+    <div class="divider"></div>
+    <p style="font-size:12px;color:#555"><strong style="color:#0f4c35">94%</strong> repassariam o conteúdo para outros moradores</p>
+  </div>
+  <div class="card">
+    <h3>Avaliação geral do material</h3>
+    <div class="nota-row">
+      <div><div class="nota-num">4,6</div><div style="font-size:11px;color:#666;text-align:center">de 5,0</div></div>
+      <div><div class="nota-stars">★★★★★</div><div class="nota-txt">n = 32 respostas<br>escala de 1 a 5</div></div>
+    </div>
+    <div class="bar-h"><div class="lbl"><span>Nota 5</span><span>59%</span></div><div class="track"><div class="fill verde" style="width:59%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Nota 4</span><span>31%</span></div><div class="track"><div class="fill azul" style="width:31%"></div></div></div>
+    <div class="bar-h"><div class="lbl"><span>Nota 3</span><span>10%</span></div><div class="track"><div class="fill cinza" style="width:10%"></div></div></div>
+  </div>
+</div>
+
+<div class="card" style="margin-bottom:.75rem">
+  <h3>Mudança na preocupação com energia (escala 1–5) — pré vs pós</h3>
+  <div style="display:flex;gap:2rem;align-items:center;padding:.75rem 0;flex-wrap:wrap">
+    <div style="text-align:center">
+      <div style="font-family:'Sora',sans-serif;font-size:40px;font-weight:700;color:#888">3,1</div>
+      <div style="font-size:12px;color:#666">Média PRÉ</div>
+    </div>
+    <div style="flex:1;min-width:100px">
+      <div style="height:8px;background:#eee;border-radius:8px;overflow:hidden">
+        <div style="width:62%;height:100%;background:linear-gradient(90deg,#aaa,#1a7a52);border-radius:8px"></div>
+      </div>
+      <div style="text-align:center;margin-top:.6rem;font-size:12px;color:#1a7a52;font-weight:600">+42% de aumento na preocupação</div>
+    </div>
+    <div style="text-align:center">
+      <div style="font-family:'Sora',sans-serif;font-size:40px;font-weight:700;color:#0f4c35">4,4</div>
+      <div style="font-size:12px;color:#666">Média PÓS</div>
+    </div>
+  </div>
+  <div class="destaque-txt">
+    Antes do material, a maioria dos participantes relatava preocupação moderada ou baixa. Após a leitura, houve aumento significativo no engajamento e na intenção de mudança de hábitos — resultado consistente com intervenções educativas documentadas pelo PROCEL (2024) e pela EPE (2023) em populações residenciais.
+  </div>
+</div>
+
+<div class="rodape">
+  Resultados simulados com base em dados reais: PROCEL (2024), EPE — Balanço Energético Nacional (2023), ANEEL (2024)<br>
+  <strong>Grupo 1</strong> — Rafael Leiroz Chaves, Thiago dos Santos Dias, Davi Silva Dias<br>
+  Disciplina: Energia, Meio Ambiente e Sociedade — UFABC &bull; 2026 &bull; Santo André – SP
+</div>
+{% endblock %}

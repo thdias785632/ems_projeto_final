@@ -1,0 +1,66 @@
+{% extends "base.html" %}
+{% block title %}Início — EMS UFABC Grupo 1{% endblock %}
+{% block content %}
+<style>
+  .hero{background:linear-gradient(135deg,#0f4c35,#1a7a52,#2db87a);border-radius:16px;padding:3rem 2.5rem;color:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden}
+  .hero::before{content:'';position:absolute;right:-60px;top:-60px;width:250px;height:250px;border-radius:50%;background:rgba(255,255,255,.05)}
+  .hero::after{content:'';position:absolute;right:60px;bottom:-80px;width:180px;height:180px;border-radius:50%;background:rgba(255,255,255,.04)}
+  .hero-tag{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;display:inline-block;font-size:11px;font-family:'Sora',sans-serif;letter-spacing:.08em;padding:4px 14px;margin-bottom:1.25rem;text-transform:uppercase}
+  .hero h1{font-family:'Sora',sans-serif;font-size:32px;font-weight:700;line-height:1.2;margin-bottom:.75rem}
+  .hero p{font-size:15px;opacity:.85;max-width:520px;line-height:1.6;margin-bottom:1.5rem}
+  .hero-meta{display:flex;gap:1rem;flex-wrap:wrap}
+  .hero-meta span{font-size:12px;opacity:.7}
+  .cards{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+  .card-nav{background:#fff;border:0.5px solid #ddd;border-radius:14px;padding:1.5rem;text-decoration:none;color:#1a1a2e;transition:all .2s;display:flex;flex-direction:column;gap:.75rem}
+  .card-nav:hover{border-color:#1a7a52;box-shadow:0 4px 20px rgba(15,76,53,.1);transform:translateY(-2px)}
+  .card-nav .ico{width:44px;height:44px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px}
+  .card-nav h3{font-family:'Sora',sans-serif;font-size:15px;font-weight:600}
+  .card-nav p{font-size:13px;color:#666;line-height:1.5}
+  .card-nav .go{font-size:12px;font-family:'Sora',sans-serif;font-weight:600;color:#1a7a52;margin-top:auto}
+  .info-box{background:#fff;border:0.5px solid #ddd;border-radius:14px;padding:1.5rem}
+  .info-box h2{font-family:'Sora',sans-serif;font-size:16px;font-weight:600;margin-bottom:.75rem;color:#1a1a2e}
+  .info-box p{font-size:13.5px;color:#555;line-height:1.7;margin-bottom:.5rem}
+  .info-box p:last-child{margin:0}
+  @media(max-width:600px){.cards{grid-template-columns:1fr}}
+</style>
+
+<div class="hero">
+  <div class="hero-tag">Material Educativo</div>
+  <h1>Eficiência Energética<br>no Condomínio</h1>
+  <p>Projeto de extensão universitária desenvolvido pelo Grupo 1 da disciplina Energia, Meio Ambiente e Sociedade da UFABC, com foco em moradores de condomínio de Santo André – SP.</p>
+  <div class="hero-meta">
+    <span>⚡ Energia, Meio Ambiente e Sociedade</span>
+    <span>📋 Grupo 1 — UFABC</span>
+    <span>🗓 2026</span>
+    <span>📍 Santo André – SP</span>
+  </div>
+</div>
+
+<div class="cards">
+  <a href="/material" class="card-nav">
+    <div class="ico" style="background:#e6f7ef">📖</div>
+    <h3>Material Didático</h3>
+    <p>Guia completo sobre eficiência energética para moradores de condomínio, com dicas práticas e dados reais.</p>
+    <span class="go">Ver material →</span>
+  </a>
+  <a href="/formulario" class="card-nav">
+    <div class="ico" style="background:#e6f0fd">📝</div>
+    <h3>Formulários</h3>
+    <p>Questionários pré e pós aplicação do material educativo para medir o aprendizado dos participantes.</p>
+    <span class="go">Responder →</span>
+  </a>
+  <a href="/dashboard" class="card-nav">
+    <div class="ico" style="background:#fff3e4">📊</div>
+    <h3>Dashboard</h3>
+    <p>Resultados consolidados da pesquisa com 32 moradores, comparando conhecimento antes e depois.</p>
+    <span class="go">Ver resultados →</span>
+  </a>
+</div>
+
+<div class="info-box">
+  <h2>Sobre o projeto</h2>
+  <p>Este projeto extensionista foi desenvolvido no âmbito da disciplina <strong>Energia, Meio Ambiente e Sociedade</strong> da Universidade Federal do ABC (UFABC) em 2026. O objetivo é promover a educação energética junto a moradores de condomínio de Santo André – SP, seguindo os princípios da extensão universitária: interação dialógica, construção coletiva de soluções e impacto social real.</p>
+  <p>O material aborda eficiência energética de forma acessível, com dados sobre consumo residencial, dicas práticas de economia, a etiqueta PROCEL e programas governamentais disponíveis para a população.</p>
+  <p><strong>Autores:</strong> Rafael Leiroz Chaves, Thiago dos Santos Dias e Davi Silva Dias — Grupo 1, UFABC 2026.</p>
+</div>
+{% endblock %}

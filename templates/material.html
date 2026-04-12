@@ -1,0 +1,154 @@
+{% extends "base.html" %}
+{% block title %}Material Didático — Eficiência Energética{% endblock %}
+{% block content %}
+<style>
+  .capa{background:linear-gradient(135deg,#0f4c35 0%,#1a7a52 60%,#2db87a 100%);border-radius:16px;padding:2.5rem 2rem 2rem;color:#fff;margin-bottom:1.5rem;position:relative;overflow:hidden}
+  .capa::before{content:'';position:absolute;right:-40px;top:-40px;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.06)}
+  .capa-tag{background:rgba(255,255,255,.18);border:1px solid rgba(255,255,255,.3);border-radius:20px;display:inline-block;font-size:11px;font-family:'Sora',sans-serif;letter-spacing:.08em;padding:4px 14px;margin-bottom:1rem;text-transform:uppercase}
+  .capa h1{font-family:'Sora',sans-serif;font-size:28px;font-weight:700;line-height:1.25;margin-bottom:.5rem}
+  .capa p{font-size:14px;opacity:.85;max-width:480px}
+  .capa-meta{display:flex;gap:1.5rem;margin-top:1.5rem;flex-wrap:wrap}
+  .capa-meta span{font-size:12px;opacity:.75}
+  .secao{background:#fff;border:0.5px solid #e0e0e0;border-radius:14px;padding:1.5rem;margin-bottom:1rem}
+  .secao-titulo{display:flex;align-items:center;gap:10px;margin-bottom:1rem}
+  .icone{width:36px;height:36px;border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+  h2{font-family:'Sora',sans-serif;font-size:17px;font-weight:600;color:#1a1a2e}
+  p{font-size:14px;line-height:1.7;color:#444;margin-bottom:.75rem}
+  p:last-child{margin-bottom:0}
+  strong{font-weight:600;color:#1a1a2e}
+  .destaque{background:#e8f7f0;border-left:3px solid #1a7a52;border-radius:0 8px 8px 0;padding:.75rem 1rem;margin:.75rem 0;font-size:13.5px;color:#0f4c35}
+  .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:.75rem;margin-top:.75rem}
+  .card-mini{background:#f8f9fa;border-radius:10px;padding:.85rem 1rem;border:0.5px solid #e8e8e8}
+  .card-mini h4{font-family:'Sora',sans-serif;font-size:13px;font-weight:600;color:#1a1a2e;margin-bottom:.4rem}
+  .card-mini p{font-size:12.5px;color:#555;margin:0}
+  .lista-dica{list-style:none;padding:0;margin:.75rem 0 0}
+  .lista-dica li{font-size:13.5px;color:#444;padding:.5rem 0;border-bottom:0.5px solid #f0f0f0;display:flex;align-items:flex-start;gap:.6rem;line-height:1.6}
+  .lista-dica li:last-child{border-bottom:none}
+  .bullet{min-width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:3px;color:#fff;font-size:10px;font-weight:700}
+  table{width:100%;border-collapse:collapse;margin-top:.75rem;font-size:13px}
+  th{background:#0f4c35;color:#fff;padding:.5rem .75rem;text-align:left;font-family:'Sora',sans-serif;font-weight:500}
+  td{padding:.5rem .75rem;border-bottom:0.5px solid #eee;color:#444}
+  tr:nth-child(even) td{background:#f8fdf9}
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;margin-top:.75rem}
+  .card-stat{background:#f8fdf9;border:0.5px solid #c5e8d6;border-radius:10px;padding:.85rem;text-align:center}
+  .card-stat .num{font-family:'Sora',sans-serif;font-size:24px;font-weight:700;color:#0f4c35}
+  .card-stat .leg{font-size:11.5px;color:#555;margin-top:.25rem;line-height:1.4}
+  .rodape{text-align:center;font-size:12px;color:#888;margin-top:1.5rem;padding-top:1rem;border-top:0.5px solid #eee}
+  @media(max-width:520px){.grid-2,.grid-3{grid-template-columns:1fr}}
+</style>
+
+<div class="capa">
+  <div class="capa-tag">Material Educativo</div>
+  <h1>Eficiência Energética:<br>Como usar menos e pagar menos</h1>
+  <p>Um guia prático para moradores de condomínio de Santo André sobre como reduzir o consumo de energia elétrica no dia a dia.</p>
+  <div class="capa-meta">
+    <span>⚡ Energia, Meio Ambiente e Sociedade</span>
+    <span>📋 Grupo 1 — UFABC</span>
+    <span>🗓 2026</span>
+    <span>📍 Santo André – SP</span>
+  </div>
+</div>
+
+<div class="secao">
+  <div class="secao-titulo">
+    <div class="icone" style="background:#e6f7ef">💡</div>
+    <h2>O que é Eficiência Energética?</h2>
+  </div>
+  <p>Eficiência energética significa <strong>fazer mais com menos energia</strong>. É como usar um carro que percorre 15 km com 1 litro de gasolina, em vez de outro que percorre só 8 km — ambos chegam ao destino, mas um gasta muito menos.</p>
+  <p>No seu apartamento ou casa em condomínio, isso quer dizer: manter a geladeira gelada, a roupa lavada, a televisão funcionando e o ambiente iluminado, mas pagando uma conta de luz menor no fim do mês.</p>
+  <div class="destaque">Eficiência energética não é deixar de usar energia — é usar energia com inteligência.</div>
+</div>
+
+<div class="secao">
+  <div class="secao-titulo">
+    <div class="icone" style="background:#e6f0fd">📊</div>
+    <h2>Por que isso importa para você?</h2>
+  </div>
+  <p>O Brasil tem uma das tarifas de energia mais altas da América Latina. Em condomínios, além da conta individual, o consumo das áreas comuns (elevadores, iluminação, bombas d'água) pode representar até 30% do rateio do condomínio.</p>
+  <div class="grid-3">
+    <div class="card-stat"><div class="num">R$250</div><div class="leg">média da conta de luz residencial em SP (2024)</div></div>
+    <div class="card-stat"><div class="num">40%</div><div class="leg">do consumo vem de geladeira, chuveiro e iluminação</div></div>
+    <div class="card-stat"><div class="num">30%</div><div class="leg">é o que uma família pode economizar com hábitos simples</div></div>
+  </div>
+</div>
+
+<div class="secao">
+  <div class="secao-titulo">
+    <div class="icone" style="background:#fff3e4">🏠</div>
+    <h2>Os vilões do consumo em casa</h2>
+  </div>
+  <p>Alguns aparelhos consomem muito mais energia do que as pessoas percebem. Veja quanto cada equipamento representa na conta de luz de uma residência típica:</p>
+  <table>
+    <thead><tr><th>Aparelho</th><th>% do consumo</th><th>Dica principal</th></tr></thead>
+    <tbody>
+      <tr><td>🚿 Chuveiro elétrico</td><td>26%</td><td>Banho de 5 min em vez de 15 min</td></tr>
+      <tr><td>❄️ Geladeira</td><td>22%</td><td>Não abrir sem necessidade; limpar a borracha</td></tr>
+      <tr><td>💡 Iluminação</td><td>14%</td><td>Trocar lâmpadas por LED</td></tr>
+      <tr><td>📺 TV e eletrônicos</td><td>12%</td><td>Desligar da tomada quando não usar</td></tr>
+      <tr><td>🌀 Ferro de passar</td><td>8%</td><td>Passar tudo de uma vez; desligar antes de acabar</td></tr>
+      <tr><td>🌊 Máquina de lavar</td><td>7%</td><td>Usar sempre com carga cheia</td></tr>
+      <tr><td>Outros aparelhos</td><td>11%</td><td>—</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<div class="secao">
+  <div class="secao-titulo">
+    <div class="icone" style="background:#e6f7ef">✅</div>
+    <h2>10 dicas práticas para economizar agora</h2>
+  </div>
+  <ul class="lista-dica">
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Tome banhos mais curtos — reduza de 15 para 7 minutos e economize até 50% no chuveiro</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Troque lâmpadas incandescentes ou fluorescentes por LED — economia de até 80% na iluminação</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Desligue os aparelhos da tomada (não apenas no controle remoto) — o modo standby desperdiça até R$30/mês</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Mantenha a geladeira longe do fogão e da luz do sol — ela trabalha mais e consome mais quando está quente</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Abra portas e janelas para ventilar antes de ligar o ventilador ou o ar-condicionado</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Use a máquina de lavar sempre cheia e prefira a água fria</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Aproveite a luz natural durante o dia — organize os ambientes para isso</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Cozinhe com panela de pressão — cozinha mais rápido e usa menos energia</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Verifique se você tem direito à Tarifa Social de Energia Elétrica (TSEE) — famílias inscritas no CadÚnico têm desconto de até 65%</li>
+    <li><div class="bullet" style="background:#1a7a52">✓</div>Leia a sua conta de luz todo mês e compare — é o primeiro passo para controlar o consumo</li>
+  </ul>
+</div>
+
+<div class="secao">
+  <div class="secao-titulo">
+    <div class="icone" style="background:#fef9e6">⚠️</div>
+    <h2>Entendendo a etiqueta PROCEL</h2>
+  </div>
+  <p>Quando for comprar um eletrodoméstico, procure a <strong>Etiqueta PROCEL</strong> — ela mostra o consumo de energia do produto. Quanto mais próximo da letra A, mais eficiente é o aparelho.</p>
+  <div class="grid-2">
+    <div class="card-mini"><h4>🟢 Nível A (mais eficiente)</h4><p>Consome até 40% menos energia. Paga mais na compra, mas economiza muito mais ao longo do tempo.</p></div>
+    <div class="card-mini"><h4>🔴 Nível E (menos eficiente)</h4><p>Consome muito mais energia. Parece mais barato, mas o gasto com energia compensa em poucos meses.</p></div>
+  </div>
+  <div class="destaque">Uma geladeira nível A pode custar R$200 a mais na compra, mas economiza até R$600 em 5 anos na conta de luz.</div>
+</div>
+
+<div class="secao">
+  <div class="secao-titulo">
+    <div class="icone" style="background:#e6f0fd">🌱</div>
+    <h2>Energia e meio ambiente: qual a relação?</h2>
+  </div>
+  <p>Toda energia que usamos tem um custo ambiental. No Brasil, boa parte da eletricidade vem de hidrelétricas — mas nos períodos de seca, o país precisa acionar usinas termelétricas, que queimam combustíveis fósseis e emitem gases que aquecem o planeta.</p>
+  <p>Quando você economiza energia no seu apartamento, você também ajuda o meio ambiente. Um gesto simples que, somado ao de muitas famílias em um mesmo condomínio, faz uma diferença enorme.</p>
+  <div class="destaque">Uma família que reduz 10% do seu consumo ajuda a evitar a emissão de cerca de 15 kg de CO2 por mês — o equivalente a plantar uma árvore.</div>
+</div>
+
+<div class="secao">
+  <div class="secao-titulo">
+    <div class="icone" style="background:#fde8e8">📌</div>
+    <h2>Direitos e programas disponíveis</h2>
+  </div>
+  <ul class="lista-dica">
+    <li><div class="bullet" style="background:#c0392b">→</div><strong>Tarifa Social (TSEE):</strong> desconto de 10% a 65% para famílias cadastradas no CadÚnico com consumo de até 220 kWh/mês</li>
+    <li><div class="bullet" style="background:#c0392b">→</div><strong>Programa Luz para Todos:</strong> energia para comunidades sem acesso à rede elétrica</li>
+    <li><div class="bullet" style="background:#c0392b">→</div><strong>PROCEL Comunidades:</strong> troca de eletrodomésticos antigos por modelos eficientes em famílias de baixa renda</li>
+    <li><div class="bullet" style="background:#c0392b">→</div><strong>Microgeração solar:</strong> moradores podem instalar painéis solares — o excedente pode ser devolvido à distribuidora como crédito na conta</li>
+  </ul>
+</div>
+
+<div class="rodape">
+  Material produzido pelo <strong>Grupo 1</strong> — Rafael Leiroz Chaves, Thiago dos Santos Dias, Davi Silva Dias<br>
+  Disciplina: Energia, Meio Ambiente e Sociedade — UFABC &bull; 2026 &bull; Santo André – SP
+</div>
+{% endblock %}

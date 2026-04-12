@@ -1,0 +1,252 @@
+{% extends "base.html" %}
+{% block title %}Formulários Pré e Pós — EMS UFABC{% endblock %}
+{% block content %}
+<style>
+  .tabs{display:flex;gap:0;background:#e8ede8;border-radius:10px;padding:4px;margin-bottom:1.5rem}
+  .tab{flex:1;text-align:center;padding:.6rem;font-family:'Sora',sans-serif;font-size:13px;font-weight:600;border-radius:8px;cursor:pointer;color:#666;transition:all .2s;user-select:none}
+  .tab.ativo{background:#fff;color:#0f4c35;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+  .form-bloco{display:none}
+  .form-bloco.ativo{display:block}
+  .form-header{border-radius:12px;padding:1.5rem;color:#fff;margin-bottom:1.25rem}
+  .fh-pre{background:linear-gradient(135deg,#0f4c35,#1a7a52)}
+  .fh-pos{background:linear-gradient(135deg,#1a3a6c,#2563b0)}
+  .form-header h2{font-family:'Sora',sans-serif;font-size:18px;font-weight:700;margin-bottom:.35rem}
+  .form-header p{font-size:13px;opacity:.85;line-height:1.5}
+  .pergunta{background:#fff;border:0.5px solid #ddd;border-radius:12px;padding:1.1rem 1.25rem;margin-bottom:.85rem}
+  .pergunta label.qlabel{font-family:'Sora',sans-serif;font-size:13.5px;font-weight:600;color:#1a1a2e;display:block;margin-bottom:.75rem;line-height:1.45}
+  .num-q{display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:6px;font-size:11px;font-weight:700;margin-right:6px;font-family:'Sora',sans-serif}
+  .nq-v{background:#e6f7ef;color:#0f4c35}
+  .nq-a{background:#e6f0fd;color:#1a3a6c}
+  .opcoes{display:flex;flex-direction:column;gap:.45rem}
+  .opcao{display:flex;align-items:center;gap:.6rem;padding:.5rem .75rem;border:0.5px solid #ddd;border-radius:8px;cursor:pointer;font-size:13px;color:#333;transition:background .15s}
+  .opcao:hover{background:#f0f8f4}
+  .opcao input{accent-color:#1a7a52;width:15px;height:15px;flex-shrink:0}
+  .escala{display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.25rem}
+  .escala-item{width:44px;height:44px;border-radius:8px;border:0.5px solid #ddd;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;cursor:pointer;font-family:'Sora',sans-serif;color:#666;transition:all .15s}
+  .escala-item:hover,.escala-item.sel{background:#e6f7ef;border-color:#1a7a52;color:#0f4c35}
+  .escala-labels{display:flex;justify-content:space-between;margin-top:.3rem;font-size:11px;color:#888}
+  textarea{width:100%;border:0.5px solid #ddd;border-radius:8px;padding:.6rem .75rem;font-family:'DM Sans',sans-serif;font-size:13px;resize:vertical;min-height:80px;color:#333}
+  textarea:focus{outline:none;border-color:#1a7a52}
+  .btn-enviar{width:100%;color:#fff;border:none;border-radius:10px;padding:.85rem;font-family:'Sora',sans-serif;font-size:14px;font-weight:600;cursor:pointer;margin-top:.5rem;transition:all .2s}
+  .btn-pre{background:#0f4c35}.btn-pre:hover{background:#1a7a52}
+  .btn-pos{background:#1a3a6c}.btn-pos:hover{background:#2563b0}
+  .aviso{font-size:11.5px;color:#888;text-align:center;margin-top:.75rem;line-height:1.5}
+  .secao-label{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:#1a7a52;font-family:'Sora',sans-serif;font-weight:600;margin-bottom:.5rem;margin-top:.25rem;padding-left:.25rem}
+</style>
+
+<div class="tabs">
+  <div class="tab ativo" onclick="trocar('pre',this)">Pré — Antes do material</div>
+  <div class="tab" onclick="trocar('pos',this)">Pós — Depois do material</div>
+</div>
+
+<!-- PRÉ -->
+<div id="pre" class="form-bloco ativo">
+  <div class="form-header fh-pre">
+    <h2>Formulário Pré — Eficiência Energética</h2>
+    <p>Responda antes de ver o material. Não existe resposta certa ou errada — queremos entender o que você já sabe e como você vive no dia a dia.</p>
+  </div>
+
+  <div class="secao-label">Perfil do participante</div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">1</span>Qual é a sua faixa etária?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="p1"> Menos de 18 anos</label>
+      <label class="opcao"><input type="radio" name="p1"> 18 a 30 anos</label>
+      <label class="opcao"><input type="radio" name="p1"> 31 a 45 anos</label>
+      <label class="opcao"><input type="radio" name="p1"> 46 a 60 anos</label>
+      <label class="opcao"><input type="radio" name="p1"> Mais de 60 anos</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">2</span>Quantas pessoas moram na sua unidade?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="p2"> 1 pessoa</label>
+      <label class="opcao"><input type="radio" name="p2"> 2 a 3 pessoas</label>
+      <label class="opcao"><input type="radio" name="p2"> 4 a 5 pessoas</label>
+      <label class="opcao"><input type="radio" name="p2"> Mais de 5 pessoas</label>
+    </div>
+  </div>
+
+  <div class="secao-label">Hábitos e conta de luz</div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">3</span>Quanto você paga, em média, de conta de luz por mês?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="p3"> Menos de R$80</label>
+      <label class="opcao"><input type="radio" name="p3"> De R$80 a R$150</label>
+      <label class="opcao"><input type="radio" name="p3"> De R$150 a R$250</label>
+      <label class="opcao"><input type="radio" name="p3"> Mais de R$250</label>
+      <label class="opcao"><input type="radio" name="p3"> Não sei / não costumo ver a conta</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">4</span>Você acha que sua conta de luz é alta? Por quê?</label>
+    <textarea placeholder="Escreva aqui sua opinião..."></textarea>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">5</span>Você já fez alguma coisa para tentar economizar energia em casa?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="p5"> Sim, e funcionou</label>
+      <label class="opcao"><input type="radio" name="p5"> Sim, mas não percebi diferença</label>
+      <label class="opcao"><input type="radio" name="p5"> Não, mas tenho vontade</label>
+      <label class="opcao"><input type="radio" name="p5"> Não, e não vejo como mudaria algo</label>
+    </div>
+  </div>
+
+  <div class="secao-label">Conhecimento sobre o tema</div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">6</span>O que você entende por "eficiência energética"?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="p6"> Ficar sem luz para economizar</label>
+      <label class="opcao"><input type="radio" name="p6"> Usar menos aparelhos elétricos</label>
+      <label class="opcao"><input type="radio" name="p6"> Fazer o mesmo com menos energia</label>
+      <label class="opcao"><input type="radio" name="p6"> Não conheço esse termo</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">7</span>Qual aparelho você acha que consome mais energia em casa?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="p7"> Televisão</label>
+      <label class="opcao"><input type="radio" name="p7"> Chuveiro elétrico</label>
+      <label class="opcao"><input type="radio" name="p7"> Geladeira</label>
+      <label class="opcao"><input type="radio" name="p7"> Iluminação</label>
+      <label class="opcao"><input type="radio" name="p7"> Celular carregando</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">8</span>Você já ouviu falar em Tarifa Social de Energia Elétrica?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="p8"> Sim, sei o que é e se tenho direito</label>
+      <label class="opcao"><input type="radio" name="p8"> Sim, já ouvi mas não sei os detalhes</label>
+      <label class="opcao"><input type="radio" name="p8"> Não, nunca ouvi falar</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">9</span>De 1 a 5, o quanto você se preocupa com o consumo de energia da sua unidade? (1 = nada / 5 = muito)</label>
+    <div class="escala" id="esc-pre">
+      <div class="escala-item" onclick="selEsc(this,'esc-pre')">1</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pre')">2</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pre')">3</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pre')">4</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pre')">5</div>
+    </div>
+    <div class="escala-labels"><span>Nada preocupado</span><span>Muito preocupado</span></div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-v">10</span>O que você gostaria de aprender sobre energia elétrica?</label>
+    <textarea placeholder="Escreva livremente..."></textarea>
+  </div>
+  <button class="btn-enviar btn-pre" onclick="alert('Resposta registrada! Agora veja o material e depois responda o formulário Pós.')">Enviar respostas (pré)</button>
+  <p class="aviso">Suas respostas são anônimas e serão usadas somente para fins acadêmicos — UFABC, 2026.</p>
+</div>
+
+<!-- PÓS -->
+<div id="pos" class="form-bloco">
+  <div class="form-header fh-pos">
+    <h2>Formulário Pós — Depois do material</h2>
+    <p>Responda após ler o material educativo. Suas respostas nos ajudam a medir o que o conteúdo ensinou de novo.</p>
+  </div>
+
+  <div class="secao-label">O que você aprendeu</div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">1</span>Agora, como você define eficiência energética?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="q1"> Ficar sem luz para economizar</label>
+      <label class="opcao"><input type="radio" name="q1"> Usar menos aparelhos elétricos</label>
+      <label class="opcao"><input type="radio" name="q1"> Fazer o mesmo com menos energia</label>
+      <label class="opcao"><input type="radio" name="q1"> Ainda não sei definir</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">2</span>Qual aparelho consome mais energia em casa, segundo o material?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="q2"> Televisão</label>
+      <label class="opcao"><input type="radio" name="q2"> Chuveiro elétrico</label>
+      <label class="opcao"><input type="radio" name="q2"> Geladeira</label>
+      <label class="opcao"><input type="radio" name="q2"> Iluminação</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">3</span>Quais dicas do material você pretende colocar em prática? (pode marcar mais de uma)</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="checkbox"> Tomar banhos mais curtos</label>
+      <label class="opcao"><input type="checkbox"> Trocar lâmpadas por LED</label>
+      <label class="opcao"><input type="checkbox"> Desligar aparelhos da tomada</label>
+      <label class="opcao"><input type="checkbox"> Verificar a Tarifa Social</label>
+      <label class="opcao"><input type="checkbox"> Prestar atenção na etiqueta PROCEL</label>
+      <label class="opcao"><input type="checkbox"> Passar roupa toda de uma vez</label>
+      <label class="opcao"><input type="checkbox"> Aproveitar mais a luz natural</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">4</span>Você sabia da Tarifa Social de Energia antes do material?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="q4"> Sim, já sabia</label>
+      <label class="opcao"><input type="radio" name="q4"> Não sabia — e pretendo verificar se tenho direito</label>
+      <label class="opcao"><input type="radio" name="q4"> Não sabia — mas não vou verificar</label>
+    </div>
+  </div>
+
+  <div class="secao-label">Avaliação do material</div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">5</span>O material foi fácil de entender?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="q5"> Sim, muito fácil</label>
+      <label class="opcao"><input type="radio" name="q5"> Razoável — entendi a maioria</label>
+      <label class="opcao"><input type="radio" name="q5"> Difícil — muita coisa não ficou clara</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">6</span>De 1 a 5, quanto o material mudou sua visão sobre energia elétrica? (1 = nada / 5 = muito)</label>
+    <div class="escala" id="esc-pos">
+      <div class="escala-item" onclick="selEsc(this,'esc-pos')">1</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pos')">2</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pos')">3</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pos')">4</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-pos')">5</div>
+    </div>
+    <div class="escala-labels"><span>Nada</span><span>Muito</span></div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">7</span>Você repassaria estas informações para outros moradores do condomínio?</label>
+    <div class="opcoes">
+      <label class="opcao"><input type="radio" name="q7"> Sim, com certeza</label>
+      <label class="opcao"><input type="radio" name="q7"> Talvez</label>
+      <label class="opcao"><input type="radio" name="q7"> Não</label>
+    </div>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">8</span>O que mais chamou sua atenção no material?</label>
+    <textarea placeholder="Pode ser uma informação nova, uma surpresa, ou algo que já sabia..."></textarea>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">9</span>Tem alguma dúvida que ficou sem resposta? Escreva aqui.</label>
+    <textarea placeholder="Suas dúvidas são importantes para melhorarmos o material..."></textarea>
+  </div>
+  <div class="pergunta">
+    <label class="qlabel"><span class="num-q nq-a">10</span>De 1 a 5, como você avalia este material no geral?</label>
+    <div class="escala" id="esc-geral">
+      <div class="escala-item" onclick="selEsc(this,'esc-geral')">1</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-geral')">2</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-geral')">3</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-geral')">4</div>
+      <div class="escala-item" onclick="selEsc(this,'esc-geral')">5</div>
+    </div>
+    <div class="escala-labels"><span>Péssimo</span><span>Excelente</span></div>
+  </div>
+  <button class="btn-enviar btn-pos" onclick="alert('Obrigado pela participação! Suas respostas foram registradas.')">Enviar respostas (pós)</button>
+  <p class="aviso">Suas respostas são anônimas e serão usadas somente para fins acadêmicos — UFABC, 2026.</p>
+</div>
+
+<script>
+function trocar(id,el){
+  document.querySelectorAll('.form-bloco').forEach(b=>b.classList.remove('ativo'));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('ativo'));
+  document.getElementById(id).classList.add('ativo');
+  el.classList.add('ativo');
+}
+function selEsc(el,groupId){
+  document.getElementById(groupId).querySelectorAll('.escala-item').forEach(i=>i.classList.remove('sel'));
+  el.classList.add('sel');
+}
+</script>
+{% endblock %}
